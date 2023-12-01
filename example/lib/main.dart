@@ -1,8 +1,7 @@
-import 'dart:typed_data';
-
-import 'package:example/sample_animation.dart';
 import 'package:flutter/material.dart';
 import 'package:screen_recorder/screen_recorder.dart';
+
+import 'sample_animation.dart';
 
 void main() {
   runApp(MyApp());
@@ -123,30 +122,6 @@ class _MyHomePageState extends State<MyHomePage> {
                   ),
                 ),
               if (canExport && !_exporting) ...[
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: ElevatedButton(
-                    onPressed: () async {
-                      setState(() {
-                        _exporting = true;
-                      });
-                      var gif = await controller.exporter.exportGif();
-                      if (gif == null) {
-                        throw Exception();
-                      }
-                      setState(() => _exporting = false);
-                      showDialog(
-                        context: context,
-                        builder: (context) {
-                          return AlertDialog(
-                            content: Image.memory(Uint8List.fromList(gif)),
-                          );
-                        },
-                      );
-                    },
-                    child: Text('Export as GIF'),
-                  ),
-                ),
                 Padding(
                   padding: const EdgeInsets.all(8.0),
                   child: ElevatedButton(
